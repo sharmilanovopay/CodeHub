@@ -6,7 +6,7 @@
   		<parameter name="email" value="abc@gmail.com"/>  		
   
     <classes>
-      <class name="alertHandling.HandlePopUpWindow"/>
+      <class name="alertHandling.HandlePopUpTab"/>
     </classes>
   </test> <!-- Default test -->
   
