@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
@@ -30,13 +31,24 @@ public class AlertHandlerClass {
 		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 		Alert alert = driver.switchTo().alert();
 		System.out.println(alert.getText());
+		
+		if(alert.getText().equals("Please enter a valid user name")) {
+			System.out.println("correct alert");
+		}
+		
+		else {
+			System.out.println("terminated the program because of incorrect alert message");
+			System.exit(0);
+		}
+		
 		alert.accept();
+		//alert.dismiss();
 		// implicit wait
 		Thread.sleep(5000);
 		
 		//Explicit wait
-		//WebDriverWait wait = new WebDriverWait(driver,5);
-		//wait.equals(obj);
+		WebDriverWait wait = new WebDriverWait(driver,5);
+		wait.until(ExpectedConditions.titleContains("Rediffmail"));
 		
 		driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div[2]/div[1]/div/form/div/div[7]/a")).click();
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
@@ -49,9 +61,9 @@ public class AlertHandlerClass {
 		
 		WebElement monthSelector = driver.findElement(By.xpath("/html/body/center/form/div/table[2]/tbody/tr[22]/td[3]/select[2]"));
 		Select selectMonth = new Select(monthSelector);
-		selectMonth.selectByVisibleText("OCT");
-		//Thread.sleep(5000);
-
+		//selectMonth.selectByVisibleText("OCT");
+		selectMonth.selectByIndex(10);
+		
 		WebElement yearSelector = driver.findElement(By.xpath("/html/body/center/form/div/table[2]/tbody/tr[22]/td[3]/select[3]"));
 		Select selectYear = new Select(yearSelector);
 		selectYear.selectByVisibleText("1994");
