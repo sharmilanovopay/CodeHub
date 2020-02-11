@@ -33,7 +33,7 @@ public class QuickSort {
 
     void printArr(int[] arr){
         for (int k=0;k<arr.length;k++){
-            System.out.print(k+" ");
+            System.out.print(arr[k]+" ");
         }
         System.out.println();
     }
